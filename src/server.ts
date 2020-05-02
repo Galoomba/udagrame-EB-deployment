@@ -30,7 +30,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
     if (!req.query.image_url)
       return res.status(400).send('Please add Image url');
     const filteredimage = await filterImageFromURL(req.query.image_url);
-    res.download(filteredimage,async (err)=>{
+    res.sendFile(filteredimage,async (err)=>{
       if(err) console.log(err);
       await deleteLocalFiles(filteredimage);
     });
